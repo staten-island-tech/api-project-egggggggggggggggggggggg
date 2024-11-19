@@ -29,4 +29,4 @@ dist-ssr
 *.sw?
 
 # Environment files
-.env          # <-- Add this line to ignore your .env file
+.env
