@@ -7,9 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node modules
 node_modules
+
+# Vite build output
 dist
 dist-ssr
+
+# Other system-specific files
 *.local
 
 # Editor directories and files
@@ -22,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env          # <-- Add this line to ignore your .env file
