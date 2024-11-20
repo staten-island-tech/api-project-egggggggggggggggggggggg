@@ -1,3 +1,31 @@
+
 import '../CSS/style.css';
-const apiKey = import.meta.env.VITE_API_KEY;
-console.log(apiKey);
+const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
+const player_name = "Junenaah";
+const DOMSelectors = 
+{
+    container:document.querySelector(".container"),
+}
+const URL_SELECTORS=
+{
+    uuid:`https://api.ashcon.app/mojang/v2/user/${player_name}`,
+    auctions:"https://api.hypixel.net/skyblock/auctions"
+    
+}
+const uuid =  (await getData(URL_SELECTORS.uuid)).uuid;
+console.log(uuid)
+async function getData(url)
+{
+    try{
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    }
+    catch(error)
+    {
+        console.error("PROBLEM FETCHING DATA",error);
+    }
+}
+const fetch_skyblock_data =  await getData(`https://api.hypixel.net/player?uuid=${uuid}&key=${apiKey}`);
+
+console.log(fetch_skyblock_data);
