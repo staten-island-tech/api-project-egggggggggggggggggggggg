@@ -3,7 +3,7 @@ const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
 const player_name = "Junenaah";
 const DOMSelectors = 
 {
-    container:document.querySelector(".container"),
+    inputted_username:document.querySelector(".search_thingie"),
 }
 const URL_SELECTORS=
 {
@@ -32,3 +32,6 @@ const current_profile =  test.profiles.find(profile=>{if(profile.selected){retur
 console.log(current_profile.profile_id);
 const auction_current_profile= await getData(`https://api.hypixel.net/v2/skyblock/auction?key=${apiKey}&profile=${current_profile.profile_id}`)
 console.log(auction_current_profile);
+
+
+
