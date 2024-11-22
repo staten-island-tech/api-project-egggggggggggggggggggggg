@@ -42,5 +42,29 @@ const auction_current_profile= await getData(`https://api.hypixel.net/v2/skybloc
 DOMSelectors.player_name.textContent=player_name;
 
 
-const fetch_skyblock_data = await getData(`https://api.hypixel.net/v2/resources/skyblock/collections`);
+const skyblock_collection_data = await getData(`https://api.hypixel.net/v2/resources/skyblock/collections`);
+console.log(skyblock_collection_data.collections.COMBAT.items);
 //Collection Data
+
+
+const temporary = new Date(1732232136417)
+//Use new Date(epoch) to get data
+
+const collection_names =  Object.keys(skyblock_collection_data.collections);
+
+for(let i = 0; i < collection_names.length; i++)
+    {
+        const current_items_skill =  skyblock_collection_data.collections[collection_names[i]].items;
+        Object.keys(current_items_skill).forEach(item=>{
+            const current_item = current_items_skill[item];
+            Object.keys(current_item).forEach(value=>
+                {
+                    console.log(value);
+                }
+            )
+        });
+    }
+function current_tier_amount(items)
+{
+    
+}
