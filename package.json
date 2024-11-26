@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pako": "^2.1.0",
+    "prismarine-nbt": "^2.6.0"
+  }
+}

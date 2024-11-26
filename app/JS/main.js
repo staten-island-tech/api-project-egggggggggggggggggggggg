@@ -165,30 +165,4 @@ function display_skill_exp()
         bar_element.style.width = `${progress_to_next_level}%`
     } 
 }
-import pako from 'pako'
-import * as nbt from "prismarine-nbt";
 display_skill_exp()
-
-function display_inventory(encoded)
-{
-
-    // Step 1: Decode the base64 string to raw binary data (Buffer)
-    const buf = Buffer.from(encoded, 'base64');
-    try {
-      const decompressedBuf = pako.ungzip(buf);  // Pako decompresses into a Uint8Array
-    
-      // Step 3: Parse the NBT data from the decompressed buffer
-      nbt.parse(decompressedBuf, (err, data) => {
-        if (err) {
-          console.error("Error parsing NBT data:", err);
-          return;
-        }
-    
-        // Step 4: Optionally, simplify and log the result
-        const simplifiedData = nbt.simplify(data);
-        console.log("Parsed and simplified NBT data:", JSON.stringify(simplifiedData, null, 2));
-      });
-    } catch (err) {
-      console.error("Error during decompression:", err);
-    }
-}
