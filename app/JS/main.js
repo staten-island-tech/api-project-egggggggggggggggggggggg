@@ -1,4 +1,7 @@
 import '../CSS/style.css';
+import { Buffer } from 'buffer';
+import * as nbt from "prismarine-nbt";
+import zlib from 'browserify-zlib';
 const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
 const cache = {};
 const player_name = "Junenaah";
@@ -73,7 +76,7 @@ function abbreviateItem(item)
 {
     const units = ["K", "M", "B", "T"]
     const numbers= [1_000, 1_000_000, 1_000_000_000, 1_000_000_000_000]
-    for(let i=0; i<numbers.length;I++)
+    for(let i=0; i<numbers.length;i++)
     {
         if(item>=numbers[i])
         {
@@ -101,7 +104,7 @@ function insert_item_into_skill(skill, item_name)
             const check_existence = itemArray.findIndex(item=> item.name === item_name)
             if(check_existence != (-1))
             {
-
+                
                 const actual_item_name = (item_name.length > 1) ?  `${item_name.toUpperCase().replace(/ /g,"_").replace("RAW_","")}`:`${item_name}`;
                 const type = material != "SKULL_ITEM" ? `https://mc.nerothe.com/img/1.21/minecraft_${actual_item_name.toLowerCase()}.png` : `${fetchHead(itemArray[check_existence].skin.value)}`
                 const item_amount  = profile_collection_data[material] || profile_collection_data[actual_item_name]; 
@@ -166,3 +169,20 @@ function display_skill_exp()
     } 
 }
 display_skill_exp()
+const inventory_data =  current_profile.members[uuid].inventory.inv_contents.data;
+function decodeData(encoded)
+{
+    const buf = Buffer.from(encoded, "base64")
+    const decodedstring = buf.toString('utf-8')
+    nbt.parse(buf,(err, data) =>
+        {
+            if(err) throw err;
+            const simplifiedData = nbt.simplify(data)
+            console.log(simplifiedData)
+        }
+    )
+}
+
+
+
+decodeData(inventory_data);
