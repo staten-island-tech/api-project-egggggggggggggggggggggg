@@ -61,10 +61,6 @@ body {
     gap: 1.6rem;
 }
 
-.item_amount {}
-
-.item_header {}
-
 .item_image {
     width: 5rem;
     height: 5rem;
@@ -104,7 +100,7 @@ body {
 }
 
 .skill_icon_image {
-    z-index: 1;
+
     width: 2rem;
     height: 2rem;
 
@@ -115,28 +111,47 @@ body {
     height: 1rem;
 }
 
-.inventory-slot {
+.gui_slot {
     width: 5rem;
     height: 5rem;
-    background-color: red;
-    border: 1px solid blue;
+    background-color: rgba(50,50,50, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     color: white;
     border-radius: 1rem;
-
 }
 
-.inventory-row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-}
 
 .skills {
-    background-color: blue;
+
     width: 100rem;
+}
+
+.shown
+{
+    display:grid;
+}
+.inventory_display
+{
+    position:relative;
+
+}
+.page_container {
+    position: relative;
+    margin-bottom:30rem;
+}
+
+[class^="backpack_page_"] {
+    position: absolute;
+    display:none;
+}
+.backpack
+{
+    background-color:black;
+}
+.item_information 
+{
+    display:none;
 }

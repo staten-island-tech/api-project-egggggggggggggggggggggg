@@ -12,11 +12,17 @@
 </head>
 
 <body>
-  <div id="app"></div>
-  <div class="menu_bar">
-    <div class="search">
-      <img class="search_image_icon" src="search_bar_icon.png">
-      <input class="search_thingie" type="text" value="" placeholder="Search for Player">
+  <div id="app">
+    <div class="flex justify-center items-center mt-10">
+      <div class="form-control w-full max-w-xs">
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="input input-bordered w-full"
+          />
+        </div>
+      </div>
     </div>
   </div>
   <div id="display_box">
@@ -24,10 +30,9 @@
     </div>
     <div class="main_stats">
       <div class="skyblock_level">
-
       </div>
-      <div class="skills">
-        <h2 class="skill_header">SKILLS</h2>
+      <div class="skills bg-black">
+        <h2 class="skill_header text-4xl">SKILLS</h2>
         <div class="combat"></div>
         <div class="mining"></div>
         <div class="farming"></div>
@@ -42,86 +47,50 @@
         <div class="runecrafting"></div>
       </div>
       <div class="collection_items">
-        <h2 class="skill_header">Farming</h2>
+        <h2 class="skill_header text-4xl">Farming</h2>
         <div class="FARMING collection">
         </div>
-        <h2 class="skill_header">Mining</h2>
+        <h2 class="skill_header text-4xl">Mining</h2>
         <div class="MINING collection">
         </div>
-        <h2 class="skill_header">Combat</h2>
+        <h2 class="skill_header text-4xl">Combat</h2>
         <div class="COMBAT collection">
         </div>
-        <h2 class="skill_header">Foraging</h2>
+        <h2 class="skill_header text-4xl">Foraging</h2>
         <div class="FORAGING collection">
         </div>
-        <h2 class="skill_header">Fishing</h2>
+        <h2 class="skill_header text-4xl">Fishing</h2>
         <div class="FISHING collection">
         </div>
-        <h2 class="skill_header">Rift</h2>
+        <h2 class="skill_header text-4xl">Rift</h2>
         <div class="RIFT collection">
         </div>
       </div>
-      <div class="inventory_display">
-        <div class="inventory">
-          <!-- Row 1 -->
-          <h2>Inventory</h2>
-          <div class="inventory-row row1">
-            <div class="inventory-slot inventory-slot1">1</div>
-            <div class="inventory-slot inventory-slot2">2</div>
-            <div class="inventory-slot inventory-slot3">3</div>
-            <div class="inventory-slot inventory-slot4">4</div>
-            <div class="inventory-slot inventory-slot5">5</div>
-            <div class="inventory-slot inventory-slot6">6</div>
-            <div class="inventory-slot inventory-slot7">7</div>
-            <div class="inventory-slot inventory-slot8">8</div>
-            <div class="inventory-slot inventory-slot9">9</div>
+      <div class="inventory_display w-[60rem] relative">
+        <div class="backpack w-[60rem]">
+          <div class="dropdown">
+            Ender Chest
+            <button class="btn dropdown-toggle" tabindex="0">None Selected</button>
+            <ul class="dropdown-content menu p-2 z-10 shadow bg-base-100 rounded-box w-52">
+            </ul>
           </div>
+          <div class="page_container relative ">
 
-          <div class="inventory-row row2">
-            <div class="inventory-slot inventory-slot10">10</div>
-            <div class="inventory-slot inventory-slot11">11</div>
-            <div class="inventory-slot inventory-slot12">12</div>
-            <div class="inventory-slot inventory-slot13">13</div>
-            <div class="inventory-slot inventory-slot14">14</div>
-            <div class="inventory-slot inventory-slot15">15</div>
-            <div class="inventory-slot inventory-slot16">16</div>
-            <div class="inventory-slot inventory-slot17">17</div>
-            <div class="inventory-slot inventory-slot18">18</div>
           </div>
-
-          <div class="inventory-row row3">
-            <div class="inventory-slot inventory-slot19">19</div>
-            <div class="inventory-slot inventory-slot20">20</div>
-            <div class="inventory-slot inventory-slot21">21</div>
-            <div class="inventory-slot inventory-slot22">22</div>
-            <div class="inventory-slot inventory-slot23">23</div>
-            <div class="inventory-slot inventory-slot24">24</div>
-            <div class="inventory-slot inventory-slot25">25</div>
-            <div class="inventory-slot inventory-slot26">26</div>
-            <div class="inventory-slot inventory-slot27">27</div>
-          </div>
-        </div>
-        <div clas="hotbar">
-          <div class="hotbar-slot hotbar-slot19">19</div>
-          <div class="hotbar-slot hotbar-slot20">20</div>
-          <div class="hotbar-slot hotbar-slot21">21</div>
-          <div class="hotbar-slot hotbar-slot22">22</div>
-          <div class="hotbar-slot hotbar-slot23">23</div>
-          <div class="hotbar-slot hotbar-slot24">24</div>
-          <div class="hotbar-slot hotbar-slot25">25</div>
-          <div class="hotbar-slot hotbar-slot26">26</div>
-          <div class="hotbar-slot hotbar-slot27">27</div>
         </div>
       </div>
-      <div class="miscellaneous_stats">
-        <div class="dungeons">
-
-        </div>
+      <div class="grid grid-cols-9 gap-2 p-2 rounded-md bg-black">
+        <div class="bg-red-500 p-2">Item 1</div>
+        <div class="bg-green-500 p-2">Item 2</div>
+        <!-- More items -->
+        <!--initizalizer element-->>
       </div>
+
     </div>
   </div>
-  </div>
 
+  </div>
+  
   <script type="module" src="./JS/main.js"></script>
 
 </body>
