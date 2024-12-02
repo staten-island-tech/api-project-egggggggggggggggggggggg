@@ -1,7 +1,7 @@
 import '../CSS/style.css';
 const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
 //Get uuid and replace hyphens with ""
-
+console.log(apiKey);
 function throwErrorMessage(message)
 {
     const alert = document.querySelector(".alert")
