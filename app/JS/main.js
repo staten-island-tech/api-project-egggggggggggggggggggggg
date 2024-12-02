@@ -32,6 +32,20 @@ async function getData(url)
         
     }
 }
+let skill_data, skyblock_collection_data, resources_skyblock_items;
+async function get_importantStuff()
+{
+    try{
+        skill_data =  await getData('https://api.hypixel.net/v2/resources/skyblock/skills');
+        skyblock_collection_data = await getData(`https://api.hypixel.net/v2/resources/skyblock/collections`);
+        resources_skyblock_items =  await getData('https://api.hypixel.net/resources/skyblock/items');
+    }
+    catch(error)
+    {
+        console.error('Error fetching data', error)
+    }
+}
+
 async function fetchPlayerData(player_name) {
     try {
         // Fetch UUID based on the player name
@@ -66,11 +80,7 @@ async function fetchPlayerData(player_name) {
         return null; // Or any other default/error handling behavior
     }
 }
-const skill_data =  await getData('https://api.hypixel.net/v2/resources/skyblock/skills');
-//Fetch Skill Data and go specifically into the skills
-const skyblock_collection_data = await getData(`https://api.hypixel.net/v2/resources/skyblock/collections`);
-//Collection Data
-const resources_skyblock_items =  await getData('https://api.hypixel.net/resources/skyblock/items');
+
 //Skyblock Resource Items
 const resource_hash_map  = {};
 const itembyid_hash_map = {}
