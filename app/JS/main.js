@@ -45,7 +45,7 @@ async function get_importantStuff()
         console.error('Error fetching data', error)
     }
 }
-
+get_importantStuff();
 async function fetchPlayerData(player_name) {
     try {
         // Fetch UUID based on the player name
