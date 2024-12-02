@@ -1,7 +1,6 @@
 import '../CSS/style.css';
 const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
 //Get uuid and replace hyphens with ""
-console.log(apiKey);
 function throwErrorMessage(message)
 {
     const alert = document.querySelector(".alert")
@@ -35,6 +34,8 @@ async function getData(url)
 let skill_data
 let skyblock_collection_data;
 let resources_skyblock_items;
+const resource_hash_map  = {};
+const itembyid_hash_map = {}
 async function get_importantStuff()
 {
     try{
@@ -47,11 +48,27 @@ async function get_importantStuff()
         console.error('Error fetching data', error)
     }
 }
-async function stupid_netlify(){
-    await get_importantStuff()
-
+async function something()
+{
+    await get_importantStuff(); 
+    resources_skyblock_items.items.forEach(item=>
+        {
+            const material = item.material;
+            if(!resource_hash_map[material])
+            {
+                resource_hash_map[material] = [];
+            }
+            if(item.id)
+            {
+                itembyid_hash_map[item.id] = item;
+            }
+        
+            resource_hash_map[material].push(item);
+        }
+        )
 }
-stupid_netlify();
+something()
+
 async function fetchPlayerData(player_name) {
     try {
         // Fetch UUID based on the player name
@@ -88,24 +105,8 @@ async function fetchPlayerData(player_name) {
 }
 
 //Skyblock Resource Items
-const resource_hash_map  = {};
-const itembyid_hash_map = {}
 const exceptions = ['DOUBLE_PLANT', 'LOG_2', 'LOG', 'LEAVES_2', 'LEAVES', 'STAINED_GLASS_PANE', 'STAINED_CLAY', 'STEP', 'SAPLING', 'WOOD', 'REDSTONE_TORCH_ON', 'BANNER', 'WOOD_STEP', "RAW_FISH", "RED_ROSE", "INK_SACK"];
-resources_skyblock_items.items.forEach(item=>
-{
-    const material = item.material;
-    if(!resource_hash_map[material])
-    {
-        resource_hash_map[material] = [];
-    }
-    if(item.id)
-    {
-        itembyid_hash_map[item.id] = item;
-    }
 
-    resource_hash_map[material].push(item);
-}
-)
 const submit_item =  document.querySelector(".submit_item");
 const main_stats =  document.querySelector(".main_stats");
 function insertElements()
