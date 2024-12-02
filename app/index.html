@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,16 +12,32 @@
 </head>
 
 <body>
-  <div id="app">
-    <div class="flex justify-center items-center mt-10">
+    <div role="alert" class="alert alert-error hidden transition-opacity duration-1000 opacity-0 fixed">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+      <path 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="2" 
+      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <span>Error! Task failed successfully.</span>
+  </div>
+  <div id="app"> 
+    <h1 class="text-8xl font-bold text-center text-gray-800 py-5 m-4">HYPIXEL SKYBLOCK PLAYER LOOKUP</h1>
+    <div class="flex justify-center items-center mt-10 bg-black-100">
       <div class="form-control w-full max-w-xs">
         <div class="input-group">
-          <input
-            type="text"
-            placeholder="Search..."
-            class="input input-bordered w-full"
-          />
-        </div>
+          <form class="submit_item flex items-center space-x-2">
+            <label for="playerName" class="sr-only">Enter Player Name</label>
+            <input
+              id="playerName"
+              type="text"
+              placeholder="Enter Player Name"
+              class="input input-bordered w-full"
+            />
+            <button type="submit" class="submit_button px-4 py-2 bg-blue-500 text-white leading-tight">Submit</button>
+          </form>
+          </div>
       </div>
     </div>
   </div>
@@ -29,62 +45,6 @@
     <div class="player_name">
     </div>
     <div class="main_stats">
-      <div class="skyblock_level">
-      </div>
-      <div class="skills bg-black">
-        <h2 class="skill_header text-4xl">SKILLS</h2>
-        <div class="combat"></div>
-        <div class="mining"></div>
-        <div class="farming"></div>
-        <div class="foraging"></div>
-        <div class="fishing"></div>
-        <div class="enchanting"></div>
-        <div class="alchemy"></div>
-        <div class="taming"></div>
-        <div class="dungeoneering"></div>
-        <div class="carpentry"></div>
-        <div class="social"></div>
-        <div class="runecrafting"></div>
-      </div>
-      <div class="collection_items">
-        <h2 class="skill_header text-4xl">Farming</h2>
-        <div class="FARMING collection">
-        </div>
-        <h2 class="skill_header text-4xl">Mining</h2>
-        <div class="MINING collection">
-        </div>
-        <h2 class="skill_header text-4xl">Combat</h2>
-        <div class="COMBAT collection">
-        </div>
-        <h2 class="skill_header text-4xl">Foraging</h2>
-        <div class="FORAGING collection">
-        </div>
-        <h2 class="skill_header text-4xl">Fishing</h2>
-        <div class="FISHING collection">
-        </div>
-        <h2 class="skill_header text-4xl">Rift</h2>
-        <div class="RIFT collection">
-        </div>
-      </div>
-      <div class="inventory_display w-[60rem] relative">
-        <div class="backpack w-[60rem]">
-          <div class="dropdown">
-            Ender Chest
-            <button class="btn dropdown-toggle" tabindex="0">None Selected</button>
-            <ul class="dropdown-content menu p-2 z-10 shadow bg-base-100 rounded-box w-52">
-            </ul>
-          </div>
-          <div class="page_container relative ">
-
-          </div>
-        </div>
-      </div>
-      <div class="grid grid-cols-9 gap-2 p-2 rounded-md bg-black">
-        <div class="bg-red-500 p-2">Item 1</div>
-        <div class="bg-green-500 p-2">Item 2</div>
-        <!-- More items -->
-        <!--initizalizer element-->>
-      </div>
 
     </div>
   </div>
