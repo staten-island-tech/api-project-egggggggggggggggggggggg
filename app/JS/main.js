@@ -32,7 +32,9 @@ async function getData(url)
         
     }
 }
-let skill_data, skyblock_collection_data, resources_skyblock_items;
+let skill_data
+let skyblock_collection_data;
+let resources_skyblock_items;
 async function get_importantStuff()
 {
     try{
@@ -45,7 +47,7 @@ async function get_importantStuff()
         console.error('Error fetching data', error)
     }
 }
-get_importantStuff();
+await get_importantStuff()
 async function fetchPlayerData(player_name) {
     try {
         // Fetch UUID based on the player name
