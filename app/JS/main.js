@@ -47,7 +47,11 @@ async function get_importantStuff()
         console.error('Error fetching data', error)
     }
 }
-await get_importantStuff()
+async function stupid_netlify(){
+    await get_importantStuff()
+
+}
+stupid_netlify();
 async function fetchPlayerData(player_name) {
     try {
         // Fetch UUID based on the player name
