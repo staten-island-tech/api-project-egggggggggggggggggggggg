@@ -28,7 +28,6 @@ async function getData(url)
     catch(error)
     {
         console.error("PROBLEM FETCHING DATA", error);
-        
     }
 }
 let skill_data
@@ -113,7 +112,7 @@ function insertElements()
 {
     main_stats.insertAdjacentHTML(
     "afterbegin",
-    `  <div class="skills w-[100rem]">
+    `  <div class="skills flex flex-col justify-center items-center h-screen">
         <h2 class="skill_header text-8xl">SKILLS</h2>
         <div class="combat"></div>
         <div class="mining"></div>
@@ -128,24 +127,24 @@ function insertElements()
         <div class="social"></div>
         <div class="runecrafting"></div>
       </div>
-      <div class="collection_items">
+      <div class="collection_items flex justify-center items-center flex-col">
         <h2 class="skill_header text-6xl">Farming</h2>
-        <div class="FARMING collection">
+        <div class="FARMING collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
         <h2 class="skill_header text-6xl">Mining</h2>
-        <div class="MINING collection">
+        <div class="MINING collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
         <h2 class="skill_header text-6xl">Combat</h2>
-        <div class="COMBAT collection">
+        <div class="COMBAT collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
         <h2 class="skill_header text-6xl">Foraging</h2>
-        <div class="FORAGING collection">
+        <div class="FORAGING collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
         <h2 class="skill_header text-6xl">Fishing</h2>
-        <div class="FISHING collection">
+        <div class="FISHING collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
         <h2 class="skill_header text-6xl">Rift</h2>
-        <div class="RIFT collection">
+        <div class="RIFT collection flex flex-wrap gap-[1.6rem] justify-center items-center">
         </div>
       </div>`
 )
@@ -211,10 +210,10 @@ function item_insertion(current_profile, uuid)
             }
             const item_amount  = !current_profile.members[uuid].collection[item_object] ?  0:current_profile.members[uuid].collection[item_object]
             collection_element.insertAdjacentHTML("afterbegin", 
-            `<div class="item">
+            `<div class="item w-[16rem] h-[10rem] flex items-center bg-[#333333E6] text-white font-sans box-border flex-col">
                 <h2 class="item_header text-2xl">${itembyid_hash_map[item_object].name}</h2>
-                <img class="item_image" src=${image_url} alt="${itembyid_hash_map[item_object].name}">
-                <h3 class="item_amount">Amount : ${item_amount}</h3>
+                <img class="item_image w-[5rem] h-[5rem]" src=${image_url} alt="${itembyid_hash_map[item_object].name}">
+                <h3 class="item_amount">Amount : ${abbreviateItem(item_amount)}</h3>
              </div>`
             )
             //profile collection data =  varbiable 
@@ -245,12 +244,12 @@ function display_skill_exp(current_profile, uuid)
             "beforeend",
             `
             <h2 class="text-center">${skill_name_without + " " + (current_level+1)}</h2>
-            <div class="skill_icon">
-                <img class="skill_icon_image" src="${skill_name_without.toLowerCase()}.png" alt="${skill_name_without.toLowerCase()}">
+            <div class="skill_icon bg-[rgba(0,0,0,0.9)] opacity-100 w-12 h-12 items-center flex justify-center absolute z-10 p-[auto] rounded-[10rem]">
+                <img class="skill_icon_image w-[2rem] h-[2rem]" src="${skill_name_without.toLowerCase()}.png" alt="${skill_name_without.toLowerCase()}">
             </div>
-            <div class="slider">
-                <h2 class="bar_text">${abbreviateItem(current_progress)}/${abbreviateItem(next_level_requirements)}</h2>
-                <div class="bar">
+            <div class="slider w-[40rem] h-[3rem] rounded-[2rem] bg-black z-0 relative">
+                <h2 class="bar_text text-center text-[white] relative z-[2]">${abbreviateItem(current_progress)}/${abbreviateItem(next_level_requirements)}</h2>
+                <div class="bar w-full h-full z-[1] text-base text-[white] flex justify-center items-center absolute mt-[-15px] rounded-[2rem] bg-green-500">
                 </div>
             </div>
             `
