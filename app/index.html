@@ -12,45 +12,35 @@
 </head>
 
 <body>
-    <div role="alert" class="alert alert-error hidden transition-opacity duration-1000 opacity-0 fixed">
+  <div role="alert" class="alert alert-error hidden transition-opacity duration-1000 opacity-0 fixed">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-      <path 
-      stroke-linecap="round" 
-      stroke-linejoin="round" 
-      stroke-width="2" 
-      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <span>Error! Task failed successfully.</span>
   </div>
-  <div id="app"> 
+  <div id="app">
     <h1 class="text-8xl font-bold text-center text-gray-800 py-5 m-4">HYPIXEL SKYBLOCK PLAYER LOOKUP</h1>
     <div class="flex justify-center items-center mt-10 bg-black-100">
       <div class="form-control w-full max-w-xs">
         <div class="input-group">
           <form class="submit_item flex items-center space-x-2">
             <label for="playerName" class="sr-only">Enter Player Name</label>
-            <input
-              id="playerName"
-              type="text"
-              placeholder="Enter Player Name"
-              class="input input-bordered w-full"
-            />
+            <input id="playerName" type="text" placeholder="Enter Player Name" class="input input-bordered w-full" />
             <button type="submit" class="submit_button px-4 py-2 bg-blue-500 text-white leading-tight">Submit</button>
           </form>
-          </div>
+        </div>
       </div>
     </div>
   </div>
   <div id="display_box">
-    <div class="player_name">
-    </div>
     <div class="main_stats">
 
     </div>
   </div>
 
   </div>
-  
+
   <script type="module" src="./JS/main.js"></script>
 
 </body>
