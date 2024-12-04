@@ -1,6 +1,5 @@
 import '../CSS/style.css';
 const apiKey = import.meta.env.VITE_HYPIXEL_API_KEY;
-//Get uuid and replace hyphens with ""
 function throwErrorMessage(message)
 {
     const alert = document.querySelector(".alert")
@@ -70,15 +69,13 @@ something()
 
 async function fetchPlayerData(player_name) {
     try {
-        // Fetch UUID based on the player name
         const uuidResponse = await getData(`https://api.ashcon.app/mojang/v2/user/${player_name}`);
         if (!uuidResponse || !uuidResponse.uuid) {
-            throwErrorMessage("UUID NOT FOUND FOR PLAYER")
+            throwErrorMessage("UUID NOT FOUND FOR PLAYER/API KEY INVALID")
             throw new Error("UUID not found for the player.");
         }
         const uuid = uuidResponse.uuid.replace(/-/g, '');
         
-        // Fetch player profiles from Hypixel
         const profilesResponse = await getData(`https://api.hypixel.net/v2/skyblock/profiles?key=${apiKey}&uuid=${uuid}`);
         if (!profilesResponse || !profilesResponse.profiles) {
             throwErrorMessage("PROFILE NOT FOUND FOR PLAYER")
@@ -90,20 +87,18 @@ async function fetchPlayerData(player_name) {
             throw new Error("No selected profile found.");
         }
 
-        // Return player data
+
         return {
             uuid,
-            skill_data, // Assuming skill_data is fetched elsewhere and is available
+            skill_data, 
             current_profile
         };
     } catch (error) {
         console.error("Error fetching player data:", error.message);
-        // Handle the error accordingly (e.g., return a default value or null)
-        return null; // Or any other default/error handling behavior
+        return null; 
     }
 }
 
-//Skyblock Resource Items
 const exceptions = ['DOUBLE_PLANT', 'LOG_2', 'LOG', 'LEAVES_2', 'LEAVES', 'STAINED_GLASS_PANE', 'STAINED_CLAY', 'STEP', 'SAPLING', 'WOOD', 'REDSTONE_TORCH_ON', 'BANNER', 'WOOD_STEP', "RAW_FISH", "RED_ROSE", "INK_SACK"];
 
 const submit_item =  document.querySelector(".submit_item");
@@ -112,7 +107,7 @@ function insertElements()
 {
     main_stats.insertAdjacentHTML(
     "afterbegin",
-    `  <div class="skills flex flex-col justify-center items-center h-screen">
+    `  <div class="skills flex flex-col justify-center items-center relative">
         <h2 class="skill_header text-8xl">SKILLS</h2>
         <div class="combat"></div>
         <div class="mining"></div>
@@ -128,23 +123,23 @@ function insertElements()
         <div class="runecrafting"></div>
       </div>
       <div class="collection_items flex justify-center items-center flex-col">
-        <h2 class="skill_header text-6xl">Farming</h2>
-        <div class="FARMING collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Farming</h2>
+        <div class="FARMING collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
-        <h2 class="skill_header text-6xl">Mining</h2>
-        <div class="MINING collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Mining</h2>
+        <div class="MINING collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
-        <h2 class="skill_header text-6xl">Combat</h2>
-        <div class="COMBAT collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Combat</h2>
+        <div class="COMBAT collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
-        <h2 class="skill_header text-6xl">Foraging</h2>
-        <div class="FORAGING collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Foraging</h2>
+        <div class="FORAGING collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
-        <h2 class="skill_header text-6xl">Fishing</h2>
-        <div class="FISHING collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Fishing</h2>
+        <div class="FISHING collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
-        <h2 class="skill_header text-6xl">Rift</h2>
-        <div class="RIFT collection flex flex-wrap gap-[1.6rem] justify-center items-center relative">
+        <h2 class="skill_header text-[6rem]">Rift</h2>
+        <div class="RIFT collection flex flex-wrap gap-[1.6rem] justify-center items-center ">
         </div>
       </div>`
 )
@@ -158,12 +153,13 @@ submit_item.addEventListener("submit",
         const input_value =  document.getElementById("playerName");
         if(!input_value.value)
         {
-            console.error("ENTER A NAME");
+            throwErrorMessage("Please input something");
             return;
         }
         else{
             fetchPlayerData(input_value.value).then((result)=>
             {
+                new_main_stats.innerHTML = ""
                 insertElements();
                 item_insertion(result.current_profile, result.uuid);
                 display_skill_exp(result.current_profile, result.uuid);
@@ -190,7 +186,6 @@ function item_insertion(current_profile, uuid)
     for(const[collection, data] of Object.entries(skyblock_collection_data.collections))
     {
         const collection_element =  document.querySelector(`.${collection}`)
-         //Selects the collection element present in the html
         const items =  data.items;
         for(const item_object of Object.keys(items))
         {
@@ -210,13 +205,12 @@ function item_insertion(current_profile, uuid)
             }
             const item_amount  = !current_profile.members[uuid].collection[item_object] ?  0:current_profile.members[uuid].collection[item_object]
             collection_element.insertAdjacentHTML("afterbegin", 
-            `<div class="item w-[32rem] h-[32rem] flex items-center bg-[#333333E6] text-white font-sans box-border flex-col">
+            `<div class="item w-[32rem] h-[32rem] flex items-center justify-center bg-[#333333E6] text-white font-sans box-border flex-col text-center">
                 <h2 class="item_header text-2xl text-[3rem]">${itembyid_hash_map[item_object].name}</h2>
                 <img class="item_image w-[10rem] h-[10rem]" src=${image_url} alt="${itembyid_hash_map[item_object].name}">
                 <h3 class="item_amount text-[3rem]">Amount : ${abbreviateItem(item_amount)}</h3>
              </div>`
             )
-            //profile collection data =  varbiable 
         }
     }
 };
@@ -243,13 +237,13 @@ function display_skill_exp(current_profile, uuid)
         skill_element_selection.insertAdjacentHTML(
             "beforeend",
             `
-            <h2 class="text-center">${skill_name_without + " " + (current_level+1)}</h2>
-            <div class="skill_icon bg-[rgb(0,0,0)] opacity-100 w-[6rem] h-[6rem] items-center flex justify-center absolute z-10 p-[auto] rounded-[10rem]">
+            <h2 class="text-center text-[2rem]">${skill_name_without + " " + (current_level+1)}</h2>
+            <div class="skill_icon bg-[rgb(0,0,0)] opacity-100 w-[6rem] h-[6rem] items-center flex justify-center absolute z-10 p-[auto] rounded-[2rem]">
                 <img class="skill_icon_image w-[5rem] h-[5rem]" src="${skill_name_without.toLowerCase()}.png" alt="${skill_name_without.toLowerCase()}">
             </div>
             <div class="slider w-[80rem] h-[6rem] rounded-[2rem] bg-black z-0 relative rounded-[20rem]">
                 <h2 class="bar_text text-center text-[white] relative z-[2] text-[2rem]">${abbreviateItem(current_progress)}/${abbreviateItem(next_level_requirements)}</h2>
-                <div class="bar w-full h-full z-[1] text-base text-[white] rounded-[10rem] flex justify-center items-center absolute rounded-[20rem] bg-green-500 mt-[-3rem]">
+                <div class="bar w-full h-full z-[1] text-base text-[white] rounded-[20rem] flex justify-center items-center absolute rounded-[20rem] bg-green-500 mt-[-3rem]">
                 </div>
             </div>
             `
